@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "username": "Priya Sharma",
+    "userType": "admin",
+    "password": "$2b$10$.9bZnmSIsbhPrgxlOJm6/OPkblaXmgDW49RwbvN/ZG1zt2.1rgbaa",
+    "email": "admin@school.com",
+    "language": "English",
+    "address": "WIPL House, Kandivali (W), Mumbai",
+    "standard": "",
+    "subjects": []
+  },
+  {
+    "id": 2,
+    "username": "Rahul Mehta",
+    "userType": "admin",
+    "password": "$2b$10$.9bZnmSIsbhPrgxlOJm6/OPkblaXmgDW49RwbvN/ZG1zt2.1rgbaa",
+    "email": "rahul.mehta@school.com",
+    "language": "Hindi",
+    "address": "Andheri (E), Mumbai",
+    "standard": "",
+    "subjects": []
+  },
+  {
+    "id": 3,
+    "username": "Ravi Kumar",
+    "userType": "student",
+    "password": "$2b$10$d6/5IHJAkO/b1JkcAgVtxuab/SMr63366jAHLUY3BNcev.lxxw.bK",
+    "email": "ravi.kumar@school.com",
+    "language": "English",
+    "address": "12 MG Road, Mumbai",
+    "standard": "8th",
+    "subjects": ["Maths", "Science", "History"]
+  },
+  {
+    "id": 4,
+    "username": "Ananya Iyer",
+    "userType": "student",
+    "password": "$2b$10$d6/5IHJAkO/b1JkcAgVtxuab/SMr63366jAHLUY3BNcev.lxxw.bK",
+    "email": "ananya.iyer@school.com",
+    "language": "Tamil",
+    "address": "45 Linking Road, Bandra (W), Mumbai",
+    "standard": "10th",
+    "subjects": ["Maths", "Physics", "Chemistry", "English"]
+  },
+  {
+    "id": 5,
+    "username": "Lukas Weber",
+    "userType": "student",
+    "password": "$2b$10$d6/5IHJAkO/b1JkcAgVtxuab/SMr63366jAHLUY3BNcev.lxxw.bK",
+    "email": "lukas.weber@school.com",
+    "language": "German",
+    "address": "8 Hiranandani Gardens, Powai, Mumbai",
+    "standard": "9th",
+    "subjects": ["German", "Science", "Geography"]
+  },
+  {
+    "id": 6,
+    "username": "Sneha Patil",
+    "userType": "student",
+    "password": "$2b$10$d6/5IHJAkO/b1JkcAgVtxuab/SMr63366jAHLUY3BNcev.lxxw.bK",
+    "email": "sneha.patil@school.com",
+    "language": "Marathi",
+    "address": "3 Charkop Sector 2, Kandivali (W), Mumbai",
+    "standard": "6th",
+    "subjects": ["Maths", "Marathi", "Environmental Studies"]
+  },
+  {
+    "id": 7,
+    "username": "Arjun Reddy",
+    "userType": "student",
+    "password": "$2b$10$d6/5IHJAkO/b1JkcAgVtxuab/SMr63366jAHLUY3BNcev.lxxw.bK",
+    "email": "arjun.reddy@school.com",
+    "language": "Telugu",
+    "address": "21 Malad Link Road, Malad (W), Mumbai",
+    "standard": "7th",
+    "subjects": ["Science", "History", "Computer Science"]
+  },
+  {
+    "id": 8,
+    "username": "Fatima Khan",
+    "userType": "student",
+    "password": "$2b$10$d6/5IHJAkO/b1JkcAgVtxuab/SMr63366jAHLUY3BNcev.lxxw.bK",
+    "email": "fatima.khan@school.com",
+    "language": "Urdu",
+    "address": "17 SV Road, Goregaon (W), Mumbai",
+    "standard": "10th",
+    "subjects": ["Maths", "Biology", "English", "History"]
+  },
+  {
+    "id": 9,
+    "username": "Emma Fischer",
+    "userType": "student",
+    "password": "$2b$10$d6/5IHJAkO/b1JkcAgVtxuab/SMr63366jAHLUY3BNcev.lxxw.bK",
+    "email": "emma.fischer@school.com",
+    "language": "German",
+    "address": "5 Juhu Tara Road, Juhu, Mumbai",
+    "standard": "8th",
+    "subjects": ["English", "Art", "Science"]
+  },
+  {
+    "id": 10,
+    "username": "Kabir Singh",
+    "userType": "student",
+    "password": "$2b$10$d6/5IHJAkO/b1JkcAgVtxuab/SMr63366jAHLUY3BNcev.lxxw.bK",
+    "email": "kabir.singh@school.com",
+    "language": "Punjabi",
+    "address": "9 Borivali (W), Mumbai",
+    "standard": "9th",
+    "subjects": ["Maths", "Physics", "Computer Science"]
+  }
+]
