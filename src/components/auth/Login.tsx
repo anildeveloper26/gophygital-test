@@ -1,5 +1,5 @@
 import { type FormEvent, useState } from "react";
-import { login, type PublicUser } from "../../lib/auth";
+import { useAuth } from "../../context/AuthContext";
 
 interface UserCreds {
   email: string;
@@ -28,7 +28,8 @@ const inputClass =
 const okInput = "border-[#cbded7] focus:border-[#6eaaa0] focus:ring-[#6eaaa0]/20";
 const badInput = "border-red-400 focus:border-red-500 focus:ring-red-500/20";
 
-export function Login({ onLogin }: { onLogin: (user: PublicUser) => void }) {
+export function Login() {
+  const { login } = useAuth();
   const [user, setUser] = useState<UserCreds>({
     email: "",
     password: "",
@@ -49,11 +50,7 @@ export function Login({ onLogin }: { onLogin: (user: PublicUser) => void }) {
     const loggedIn = await login(user.email, user.password);
     setSubmitting(false);
 
-    if (!loggedIn) {
-      setFormError("Invalid email or password");
-      return;
-    }
-    onLogin(loggedIn);
+    if (!loggedIn) setFormError("Invalid email or password");
   }
 
   return (

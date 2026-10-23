@@ -15,7 +15,6 @@ export interface User {
   subjects: string[];
 }
 
-// Everything the UI may see: the password hash never leaves this module.
 export type PublicUser = Omit<User, "password">;
 
 const SESSION_KEY = "school-app:session";

@@ -126,16 +126,31 @@ The student sees **only their own details**, on the same page: name, email ID, l
 
 ---
 
-## 5. Additional Behaviour
+## 5. Routes
 
-- **Protected view:** the dashboard is shown only when a user is logged in; otherwise the Login page is shown.
+| Route                        | Who      | Shows                                                    |
+|------------------------------|----------|----------------------------------------------------------|
+| `/`                          | anyone   | Redirects to `/login`, or to the user's home page if logged in |
+| `/login`                     | guests   | Module 1 – Login page                                    |
+| `/admin/students`            | admin    | Module 2 – student list with search                      |
+| `/admin/students/:studentId` | admin    | Student list with that student's Details popup open      |
+| `/student/profile`           | student  | Module 2 – the logged-in student's own details           |
+| any other path               | anyone   | 404 page                                                 |
+
+- **Protected routes:** guests opening an admin or student page are sent to `/login`, and after logging in they return to the page they asked for.
+- **Role checks:** a student opening an admin route (or an admin opening the student route) is redirected to their own home page.
+- **Search in the URL:** the admin's name/subject search is kept as `?name=…&subject=…`, so it survives a refresh and stays in place while a Details popup is open.
+- **Shareable details:** `/admin/students/4` opens the list with that student's popup already showing; closing it returns to the list.
+
+## 6. Additional Behaviour
+
 - **Session:** the login stays active after a page refresh until **Logout** is clicked.
 - **Logout:** ends the session and returns to the Login page.
 - **Responsive layout:** works on desktop, tablet and mobile screens.
 
 ---
 
-## 6. Test Credentials
+## 7. Test Credentials
 
 | Role    | Email                    | Password      |
 |---------|--------------------------|---------------|
@@ -146,7 +161,7 @@ All admins share `Admin@123` and all students share `Student@123`. Any email fro
 
 ---
 
-## 7. Setup & Run
+## 8. Setup & Run
 
 ```bash
 npm install
@@ -162,34 +177,41 @@ npm run preview
 
 ---
 
-## 8. Project Structure
+## 9. Project Structure
 
 ```
-index.html                           HTML entry
+index.html                             HTML entry
+vercel.json                            SPA fallback so deep links work when deployed
 src/
-  main.tsx                           mounts the app
-  App.tsx                            shows Login or Dashboard based on the session
-  index.css                          global styles
-  data/users.json                    static user dataset
-  lib/auth.ts                        login, logout, session, student list
+  main.tsx                             mounts the app inside the router + auth provider
+  App.tsx                              route table
+  index.css                            global styles
+  data/users.json                      static user dataset
+  lib/auth.ts                          login, logout, session, student list
+  context/AuthContext.tsx              current user + login/logout for components
+  routes/
+    paths.ts                           route paths and each role's home page
+    guards.tsx                         protected / guest-only / redirect routes
   components/
-    auth/Login.tsx                   Module 1, login form + validation
-    dashboard/Dashboard.tsx          Module 2, top bar + admin/student switch
-    dashboard/AdminView.tsx          student list + search
-    dashboard/UserDetailsModal.tsx   details popup
-    dashboard/StudentView.tsx        student's own details
-    dashboard/UserDetails.tsx        shared details layout
+    auth/Login.tsx                     Module 1, login form + validation
+    dashboard/DashboardLayout.tsx      top bar + logout around logged-in pages
+    dashboard/AdminView.tsx            student list + search (/admin/students)
+    dashboard/StudentDetailsRoute.tsx  details popup route (/admin/students/:studentId)
+    dashboard/UserDetailsModal.tsx     popup markup
+    dashboard/StudentView.tsx          student's own details (/student/profile)
+    dashboard/UserDetails.tsx          shared details layout
+    NotFound.tsx                       404 page
 ```
 
 ---
 
-## 9. Screenshots
+## 10. Screenshots
 
 _To be added: Login page, Admin student list, Details popup, Student details page._
 
 ---
 
-## 10. Submission
+## 11. Submission
 
 - **Submitted to:** Shweta Doshi, HR Manager, GoPhygital Pvt. Ltd.
 - **Candidate:** Anil Kumar Bobba

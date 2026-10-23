@@ -1,21 +1,40 @@
-import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import { Login } from "./components/auth/Login";
-import { Dashboard } from "./components/dashboard/Dashboard";
-import { getCurrentUser, logout, type PublicUser } from "./lib/auth";
+import { AdminView } from "./components/dashboard/AdminView";
+import { DashboardLayout } from "./components/dashboard/DashboardLayout";
+import { StudentDetailsRoute } from "./components/dashboard/StudentDetailsRoute";
+import { StudentView } from "./components/dashboard/StudentView";
+import { NotFound } from "./components/NotFound";
+import { GuestOnlyRoute, HomeRedirect, ProtectedRoute } from "./routes/guards";
 
-// No router: the session decides which screen is shown. Without a logged-in
-// user the dashboard can never render, so it is protected by construction.
 export default function App() {
-  const [user, setUser] = useState<PublicUser | null>(getCurrentUser);
+  return (
+    <Routes>
+      <Route path="/" element={<HomeRedirect />} />
+      <Route
+        path="/login"
+        element={
+          <GuestOnlyRoute>
+            <Login />
+          </GuestOnlyRoute>
+        }
+      />
 
-  function handleLogout() {
-    logout();
-    setUser(null);
-  }
+      <Route element={<ProtectedRoute allow="admin" />}>
+        <Route element={<DashboardLayout />}>
+          <Route path="/admin/students" element={<AdminView />}>
+            <Route path=":studentId" element={<StudentDetailsRoute />} />
+          </Route>
+        </Route>
+      </Route>
 
-  return user ? (
-    <Dashboard user={user} onLogout={handleLogout} />
-  ) : (
-    <Login onLogin={setUser} />
+      <Route element={<ProtectedRoute allow="student" />}>
+        <Route element={<DashboardLayout />}>
+          <Route path="/student/profile" element={<StudentView />} />
+        </Route>
+      </Route>
+
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }

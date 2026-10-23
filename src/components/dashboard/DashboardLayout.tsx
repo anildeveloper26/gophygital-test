@@ -1,13 +1,17 @@
-import type { PublicUser } from "../../lib/auth";
-import { AdminView } from "./AdminView";
-import { StudentView } from "./StudentView";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useAuth, useCurrentUser } from "../../context/AuthContext";
+import { paths } from "../../routes/paths";
 
-interface Props {
-  user: PublicUser;
-  onLogout: () => void;
-}
+export function DashboardLayout() {
+  const user = useCurrentUser();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
-export function Dashboard({ user, onLogout }: Props) {
+  function handleLogout() {
+    logout();
+    navigate(paths.login, { replace: true });
+  }
+
   return (
     <div className="min-h-screen bg-[linear-gradient(135deg,#d7eee9_0%,#f5f8f5_45%,#e4f3eb_100%)] font-sans text-[#294b4e]">
       <header className="sticky top-0 z-10 border-b border-white/60 bg-white/60 backdrop-blur-md">
@@ -23,7 +27,7 @@ export function Dashboard({ user, onLogout }: Props) {
           </div>
           <button
             type="button"
-            onClick={onLogout}
+            onClick={handleLogout}
             className="rounded-lg border border-[#cbded7] bg-white/70 px-4 py-2 text-sm font-medium transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#477f75]/40"
           >
             Logout
@@ -32,11 +36,7 @@ export function Dashboard({ user, onLogout }: Props) {
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-8">
-        {user.userType === "admin" ? (
-          <AdminView />
-        ) : (
-          <StudentView user={user} />
-        )}
+        <Outlet />
       </main>
     </div>
   );

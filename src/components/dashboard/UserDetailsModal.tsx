@@ -17,8 +17,6 @@ export function UserDetailsModal({ user, onClose }: Props) {
     return () => document.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  // Portal to <body>: an ancestor with backdrop-filter would otherwise become
-  // the containing block for this fixed overlay and clip it.
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
       <button
