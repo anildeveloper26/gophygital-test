@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { PublicUser } from "../../lib/auth";
 import { UserDetails } from "./UserDetails";
@@ -9,6 +9,12 @@ interface Props {
 }
 
 export function UserDetailsModal({ user, onClose }: Props) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    closeButtonRef.current?.focus();
+  }, []);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -40,6 +46,7 @@ export function UserDetailsModal({ user, onClose }: Props) {
             type="button"
             onClick={onClose}
             aria-label="Close"
+            ref={closeButtonRef}
             className="rounded-lg px-2 py-1 text-xl leading-none text-[#6b8580] transition hover:bg-[#477f75]/10 hover:text-[#294b4e]"
           >
             &times;

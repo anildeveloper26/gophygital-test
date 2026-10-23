@@ -1,25 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
-import { Link, Outlet, useLocation, useSearchParams } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 import { getStudents } from "../../lib/auth";
 
 const searchInputClass =
   "w-full rounded-lg border border-[#cbded7] bg-white/70 px-4 py-2.5 text-sm outline-none transition placeholder:text-[#8a9e98] focus:border-[#6eaaa0] focus:ring-2 focus:ring-[#6eaaa0]/20";
 
 export function AdminView() {
-  const students = useMemo(() => getStudents(), []);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { search } = useLocation();
-  const [nameQuery, setNameQuery] = useState(searchParams.get("name") ?? "");
-  const [subjectQuery, setSubjectQuery] = useState(
-    searchParams.get("subject") ?? "",
-  );
-
-  useEffect(() => {
-    const next = new URLSearchParams();
-    if (nameQuery) next.set("name", nameQuery);
-    if (subjectQuery) next.set("subject", subjectQuery);
-    setSearchParams(next, { replace: true });
-  }, [nameQuery, subjectQuery, setSearchParams]);
+  const students = getStudents();
+  const [nameQuery, setNameQuery] = useState("");
+  const [subjectQuery, setSubjectQuery] = useState("");
 
   const filtered = useMemo(() => {
     const name = nameQuery.trim().toLowerCase();
@@ -96,10 +85,7 @@ export function AdminView() {
                   <td className="px-3 py-3">{student.subjects.join(", ")}</td>
                   <td className="px-3 py-3 text-right">
                     <Link
-                      to={{
-                        pathname: String(student.id),
-                        search,
-                      }}
+                      to={String(student.id)}
                       className="inline-block rounded-lg bg-[#477f75] px-3 py-1.5 text-xs font-medium text-white transition hover:bg-[#376b62] focus:outline-none focus:ring-2 focus:ring-[#477f75]/40"
                     >
                       Details

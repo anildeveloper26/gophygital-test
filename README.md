@@ -139,8 +139,7 @@ The student sees **only their own details**, on the same page: name, email ID, l
 
 - **Protected routes:** guests opening an admin or student page are sent to `/login`, and after logging in they return to the page they asked for.
 - **Role checks:** a student opening an admin route (or an admin opening the student route) is redirected to their own home page.
-- **Search in the URL:** the admin's name/subject search is kept as `?name=…&subject=…`, so it survives a refresh and stays in place while a Details popup is open.
-- **Shareable details:** `/admin/students/4` opens the list with that student's popup already showing; closing it returns to the list.
+- **Details route:** `/admin/students/4` opens the list with that student's popup showing; closing it returns to the list and keeps the current search.
 
 ## 6. Additional Behaviour
 

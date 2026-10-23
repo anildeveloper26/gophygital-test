@@ -1,23 +1,19 @@
-import { useMemo } from "react";
-import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
-import { getStudents } from "../../lib/auth";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { getStudentById } from "../../lib/auth";
 import { paths } from "../../routes/paths";
 import { UserDetailsModal } from "./UserDetailsModal";
 
 export function StudentDetailsRoute() {
   const { studentId } = useParams();
   const navigate = useNavigate();
-  const { search } = useLocation();
-  const listLocation = { pathname: paths.adminStudents, search };
+  const student = getStudentById(studentId);
 
-  const student = useMemo(
-    () => getStudents().find((s) => String(s.id) === studentId),
-    [studentId],
-  );
-
-  if (!student) return <Navigate to={listLocation} replace />;
+  if (!student) return <Navigate to={paths.adminStudents} replace />;
 
   return (
-    <UserDetailsModal user={student} onClose={() => navigate(listLocation)} />
+    <UserDetailsModal
+      user={student}
+      onClose={() => navigate(paths.adminStudents)}
+    />
   );
 }

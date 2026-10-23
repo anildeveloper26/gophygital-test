@@ -55,6 +55,14 @@ export function getCurrentUser(): PublicUser | null {
   return user ? toPublic(user) : null;
 }
 
-export function getStudents(): PublicUser[] {
-  return users.filter((u) => u.userType === "student").map(toPublic);
+const students: PublicUser[] = users
+  .filter((u) => u.userType === "student")
+  .map(toPublic);
+
+export function getStudents() {
+  return students;
+}
+
+export function getStudentById(id: string | undefined) {
+  return students.find((s) => String(s.id) === id);
 }
